@@ -1,0 +1,106 @@
+<extend name="Base/header"/>
+
+<block name="body">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title></title>
+<style>
+
+a{
+	height:0.6rem;
+}
+a:focus {
+   color: #e86189;
+   background: #e86189;
+}
+
+</style>
+<link href="__CSS__/main.css" rel="stylesheet" />
+</head>
+<body>
+<section class="main fixed" data-page="home">
+  <header class="header"> 
+	<div class="header_inner header_inner_02"><h1>系统管理</h1> <a href="javascript:;history.go(-1);" class="sq-header-index"></a> </div>
+  </header>
+  <article>
+	 <h1 style="height: 0.35rem;line-height: 0.35rem;padding: 0 0.15rem;font-size: 16px;background: #fff;border-bottom: 1px solid #F2F2F2;">管理收益/支出</h1>
+     <div class="me-user-tiltle">
+		<ul>
+		<li style="width: 33.3%;"><p>{$user_info.yb_coin}</p>娱币</li>
+    	<li style="border-left: 1px solid #f2f2f2;border-right: 1px solid #f2f2f2;width: 33.3%;"><p>{$user_info.chengzi}</p>积分</li> 
+    	<li style="width: 33.3%;"><p>{$user_info.Cash}</p>佣金</li> </ul>
+    </div>
+    <div>
+    
+    </div>
+	 <div class="guanli-tiltle">
+		<ul class="nav nav-primary tap_nav">
+		<li class="active" ><a href="javascript:;tap(1);">娱币充值</a></li>
+    	<li  style="border-left: 1px solid #f2f2f2;border-right: 1px solid #f2f2f2;"><a href="javascript:;tap(2);">积分兑换</a></li> 
+    	<li ><a href="javascript:;tap(3);">佣金提现</a></li> </ul>
+    </div>
+    <input type="hidden"  id="authid" value="{$user_info.UserID}"/>
+    
+    <div id="search_list" name="search_list">
+   			
+    </div>
+    
+    
+	
+</section>
+</body>
+<script>
+$(function(){
+	 
+	$('.tap_nav li a').click(function(){
+	    $('.tap_nav li').removeClass('active');
+	    $(this).parent().addClass('active');
+	 
+	  })
+	  tap(1);
+})
+
+function tap(v){
+	var id=$("#authid").val();
+	if(v==1){
+		$.post("{:U('Ucenter/member/ybLogList')}",{},function(data){
+			$("#search_list").html(data);
+		})
+	}
+	if(v==2){
+		$.post("{:U('Ucenter/member/jifenduihuan')}",{},function(data){
+			$("#search_list").html(data);
+		})
+	}
+	if(v==3){
+		$.post("{:U('Ucenter/member/yongjintixian')}",{},function(data){
+			$("#search_list").html(data);
+		})
+	}
+}
+function search(){
+	var start_time=$("#begin_date").val();
+	var end_time=$("#end_date").val();
+	$.post("{:U('Ucenter/member/ybLogList')}",{start_time:start_time,end_time:end_time},function(data){
+		$("#search_list").html(data);
+	})
+}
+function searchjf(){
+	var start_time=$("#begin_date").val();
+	var end_time=$("#end_date").val();
+	$.post("{:U('Ucenter/member/jifenduihuan')}",{start_time:start_time,end_time:end_time},function(data){
+		$("#search_list").html(data);
+	})
+}
+
+</script>
+</block>

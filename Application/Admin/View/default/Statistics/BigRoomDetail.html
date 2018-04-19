@@ -1,0 +1,32 @@
+<style>
+.mcenter div{
+	width:24%;
+	height:200px;
+	border:1px solid #7a76b9;
+	margin:2px;
+	padding-top:20px;
+	float:left;
+}
+.mcenter p{
+	text-align:center;
+}
+.mcenter img{
+	width:40px;
+	height:40px;
+}
+</style>
+<div style="height:250px;">
+	<div class="main-title"  style="text-align:center;">
+        <h2>大局详情</h2>
+    </div>
+<div class="mcenter">
+<volist name="roomData.info_list" id="vo">
+	<div>
+		<p>玩家ID：{$vo.playerid}</p>
+		<p>玩家头像：<img src="{$vo.attribute.head_url}"/></p>
+		<p>玩家昵称：{$vo.attribute.player_name}</p>
+		<p>得分：{$vo.total_score}</p>
+	</div>
+</volist>
+</div>
+</div>

@@ -1,0 +1,52 @@
+<extend name="Base/header"/>
+
+<block name="body">
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title></title>
+<link href="__CSS__/main.css" rel="stylesheet" />
+</head>
+<body>
+<section class="main fixed" data-page="home">
+  <header class="header"> 
+	<div class="header_inner header_inner_02"><h1>积分兑换记录</h1> <a href="javascript:;history.go(-1)" class="sq-header-index"></a> </div>
+  </header>
+  <article>
+    <div class="me-combination-list">
+      <ul>
+      	<li class="me-combination-item1">
+          		 <img src="{$user_info.Headimgurl}"/>
+        </li>
+        <li class="me-combination-item2">
+           <div class="row-1">
+		   <h4>当前积分：{$user_info.chengzi|default=0}</h4>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="my_agent">
+	<div class="agent_title">用户ID<span>剩余积分</span><span>兑换数量</span><span>兑换时间</span></div>
+	<volist name="_list" id="vo">
+	 <div class="agent_content" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
+		<div><p>{$user_info.UserID}</p></div><span>{$vo.lastscore|default=0}</span><span>{$vo.score|default=0}</span><span>{$vo.time|date="Y-m-d",###}</span>
+	</div>
+	</volist>
+	</div>
+  </article>
+  <footer>
+  </footer>
+</section>
+</body>
+</html>
+</block>

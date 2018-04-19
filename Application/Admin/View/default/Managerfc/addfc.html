@@ -1,0 +1,112 @@
+<extend name="Public/base"/>
+
+<block name="body">
+
+
+	<div class="main-title">
+        <h2>我的账户</h2>
+    </div>
+	<div class="with-padding">
+		 <div class="form-item">
+                <label class="item-label">我的游戏ID：<span>{$my.nickname}</span></label>
+				<label class="item-label">我的房卡：<span>{$my.point}</span></label>
+         </div>
+	</div>
+
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+    <form action="{:U()}" method="post" class="form-horizontal">
+    <input type="hidden" name="gameid" value="{$gameid}"/>
+    
+	 <notempty name="data">
+        <div class="with-padding">
+            <div class="form-item">
+                <label class="item-label">玩家ID</label>
+                <div class="controls">
+                    <span>{$data.account_id}</span>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">微信openid</label>
+                <div class="controls">
+                    <span>{$data.username}</span>
+                </div>
+            </div>
+			<div class="form-item">
+                <label class="item-label">当前房卡数</label>
+                <div class="controls">
+                     <span>{$data.gold}</span>
+                </div>
+            </div>
+            <div class="form-item">
+                <label class="item-label">增加房卡数</label>
+                <div class="controls">
+                    <input type="text" class="text input-small form-input-width form-control" name="gold_add" value="">
+                </div>
+            </div>
+        </div>
+        <div class="form-item with-padding">
+			<input type="hidden" class="text input-small form-input-width form-control" name="id" value="{$data.account_id}">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">{:L("_SURE_WITH_SPACE_")}</button>
+            <a class="btn btn-return" href="{:U('index')}">{:L("_RETURN_WITH_SPACE_")}</a>
+        </div>
+		</notempty>
+    </form>
+	<div class="main-title">
+        <h2>拨房卡记录</h2>
+    </div>
+	<!-- 数据列表 -->
+    <div class="data-table with-padding">
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+               <!--  <th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th> -->
+                <th class="">玩家ID</th>
+                <th class="">时间</th>
+                <th class="">拨房卡数量</th>
+                <th class="">操作人</th>
+                <th class="">游戏</th>
+            </tr>
+            </thead>
+            <tbody>
+            <notempty name="_list">
+                <volist name="_list" id="vo">
+                    <tr>
+                        <!-- <td><input class="ids" type="checkbox" name="id[]" value="{$vo.uid}"/></td> -->
+                        <td>{$vo.account_id}</td>
+                        <td>{$vo.create_time|time_format}</td>
+                        <td>{$vo.gold_num}</td>
+						<td>{$vo.do_user}</td>
+						<td>
+							<eq name="vo.game" value="1" >
+								娱记游戏
+							</eq>
+							<eq name="vo.game" value="2" >
+								三公游戏
+							</eq>
+						</td>
+                    </tr>
+                </volist>
+                <else/>
+                <td colspan="9" class="text-center">还没有数据~</td>
+            </notempty>
+            </tbody>
+        </table>
+    </div>
+    <div class="with-padding">
+        {$_page}
+    </div>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        Think.setValue("pid", {$info.pid|default=0});
+
+        Think.setValue("hide", {$info.hide|default=0});
+        Think.setValue("is_dev", {$info.is_dev|default=0});
+        //导航高亮
+        highlight_subnav('{:U('index')}');
+        Think.setValue("module", '{$info.module|default=''}');
+    </script>
+</block>

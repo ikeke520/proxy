@@ -1,0 +1,25 @@
+<div class="agent_serach">
+		<input type="date" id="begin_date" name="begin_date" class="data" value="{$begin_date}"/>&nbsp;到&nbsp;<input type="date" id="end_date" name="end_date" class="data " value="{$end_date}"/>
+		<div class="submit">
+		<img src="__IMG__/search.png" style="width: 100%;" onclick="searchjf();">
+		</div>
+</div>
+<div class="my_agent"> <div class="agent_title">兑换时间<span style="width: 11%;">商品名</span>
+   <span style="width: 11%;">单价</span><span style="width: 11%;">数量</span><span style="width: 16%;">总积分</span><div>
+
+<volist name="list"  id="vo">
+	 <div class="agent_content">
+		<span style="width: 12%;">{$vo.product_name}</span>
+		<span style="width: 12%;">{$vo.cost_accu_points}</span><span style="width: 12%;">{$vo.product_nums}</span><span style="width: 16%;">{$vo.total}</span><span style="width: 25%;">{$vo.order_date}</span>
+	</div>
+</volist>
+<div>{$msg}</div>	
+	</div>
+  </article>
+  <footer>
+    <div class="footer-balance">
+      <ul class="ui layout">
+        <li class="row-1"><span><a href="http://tzp.91yuji.com/mall/mall/product/listProduct?id=8">积分换购</a></span></li>
+      </ul>
+    </div>
+  </footer>

@@ -1,0 +1,148 @@
+
+<div class="uc_m_b_12">
+	<label>
+	<h2>---拨房卡（请先输入玩家ID）---</h2>
+		
+	</label>
+	<div class="form-group">
+	<form>
+		<section>
+			<label class="col-xs-7">
+			<select type="text" id="gameid" name="gameid" class="form-control">
+				<option value='0'>---请选择---</option>  
+                    <option value='1'  <eq name="gameid" value="1">selected</eq>>娱记麻将</option>
+                    <option value='2'  <eq name="gameid" value="2">selected</eq>>三公游戏</option> 
+			</select>
+			</label>
+		</section>
+		<section>
+			<label class="col-xs-7"><input type="text" id="search" name="search" value="{$_REQUEST.search}" placeholder="请先输入玩家ID查询" class="form-control"/></label><label class="col-xs-2"><button type="button" class="btn btn-primary" onclick="getPlayerInfor();">查询</button></laber>
+		</section>
+	</form>
+	</div>
+<!-- 查询出的玩家  -->
+</div>
+<div id="player-info">
+
+</div>
+<header>
+<!-- <h2>---拨房卡记录---</h2>-->
+</header>
+<label>
+<div id="fyact">
+
+</div>
+</label>
+<!-- 拨房卡数据 -->
+<div id="gold-log">
+<table class="table datatable">
+  <thead>
+    <tr>
+      <!-- 以下两列左侧固定 -->
+      <th>玩家ID</th>
+      <th>时间</th>
+      <th>房卡数</th>
+      <th>游戏</th>
+    </tr>
+  </thead>
+  <tbody id="gold-log-data">
+  </tbody>
+</table>
+</div>
+
+<div class="modal fade" id="myModal">
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">关闭</span></button>
+        <h4 class="modal-title">拨房卡</h4>
+      </div>
+      <div class="modal-body">
+		<label class="col-xs-10"><input type="text" id="goldnum" name="goldnum" value="{$_REQUEST.goldnum}" placeholder="请先输入房卡数量" class="form-control"/></label><label class="col-xs-2"><button type="button" class="btn btn-primary" onclick="addGoldNum();">确认</button></laber>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- end -->
+<!-- 充值记录表 -->
+</div>
+<block name="javascript">
+<script>
+	function getPlayerInfor(){
+		
+		var id=document.getElementById('search').value;
+		var gameid=$("#gameid").val();
+		
+		$.post('{:U("Ucenter/index/getPlayerInfor")}',{id:id,gameid:gameid},function(data){
+			$('#player-info').html(data);
+		});
+	}
+	
+	function addGoldNum(){
+		var id=$("#search").val();
+		var num=$("#goldnum").val();
+		var gameid=$("#gameid").val();
+		
+		$.post('{:U("Ucenter/index/addGoldNum")}',{id:id,num:num,gameid:gameid},function(data){
+			var json=eval(data);
+			//alert(json.info);
+			if(json.status=='1'){
+				alert(json.info);
+				$('#myModal').modal('hide');
+				getPlayerInfor();
+				getFc()
+			}else{
+				alert(json.info);
+				$('#myModal').modal('hide');
+			}
+		});
+	}
+
+  function getGoldLog(p){
+	
+	$.post('{:U("Ucenter/index/getGoldLog")}',{page:p},function(data){
+		var json=eval(data);
+		$('#gold-log-data').html(json.info);
+	});
+	if(parseInt(p)<=1){
+		p=1;
+	}
+	var p_add=parseInt(p)+1;
+	var p_dec=parseInt(p)-1;
+	
+	var html='<button type="button" class="btn btn-primary" onclick="getGoldLog('+p_dec+');">上一页</button><button type="button" class="btn btn-primary" onclick="getGoldLog('+p_add+');">下一页</button>';
+	$('#fyact').html(html);
+  }	
+  
+  function getFc(){
+	$.post('{:U("Ucenter/index/getFc")}',{},function(data){
+		var json=eval(data);
+		$('#fc').html(json.info);
+	});
+  }
+  
+  $(document).ready(function(){ 
+　　getGoldLog(1);
+	  getFc();
+  }); 
+  function jlb(id){
+	  if(confirm("确定授权？")){
+		  $.post('{:U("Ucenter/index/jlbsq")}',{id:id},function(data){
+				if(data==1){
+					alert("修改成功");
+					window.location.reload();
+				}else{
+					alert("修改失败/该用户已授权");
+				}
+			});
+	  }
+  }
+</script>
+</block>

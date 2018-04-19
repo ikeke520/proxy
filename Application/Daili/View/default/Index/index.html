@@ -1,0 +1,54 @@
+<extend name="Base/common"/>
+
+<block name="body">
+    <link type="text/css" rel="stylesheet" href="__CSS__/home.css"/>
+    <!-- 主体 -->
+    <!--顶部Banner-->
+    <div class="container" style="background:url(__IMG__/175492987329447331.jpg) no-repeat center;background-size:100%;z-index:1;height:100vh;" >
+	<!--<img src="__IMG__/175492987329447331.jpg" style="z-index:1;position:absolute;"/>-->
+		<article><h1 align="center" style="margin-top:60px;color:#ffffff">代理申请</h1></article>
+		<div style="margin-top:50px;" class="col-xs-12">
+		<form action="{:U('dailisub')}" method="post">
+		<div class="input-group" style="z-index:999;background:none;">
+		<span class="input-group-addon">姓名</span>
+		<input type="text" name="name" class="form-control" placeholder="真实姓名">
+		<span class="input-group-a
+		ddon"></span>
+		</div>
+		<br/>
+		<div class="input-group" style="z-index:999;background:none;">
+		<span class="input-group-addon">电话</span>
+		<input type="text" name='phone' class="form-control" placeholder="手机号码">
+		<span class="input-group-addon"></span>
+		</div>
+		<br/>
+		<div class="input-group" style="z-index:999;background:none;">
+		<span class="input-group-addon">微信</span>
+		<input type="text" name='weixin' class="form-control" placeholder="微信号码">
+		<span class="input-group-addon"></span>
+		</div>
+		<br/>
+		<div class="input-group" style="z-index:999;background:none;">
+		<span class="input-group-addon">地址</span>
+		<input type="text" name='areaid' class="form-control" placeholder="所在地区">
+		<span class="input-group-addon"></span>
+		</div>
+		<br/>
+		<div class="input-group" style="z-index:999;background:none;">
+		<span class="input-group-addon">代理种类</span>
+		<input type="text" name="type" class="form-control" placeholder="代理种类">
+		<span class="input-group-addon"></span>
+		</div>
+		<br/>
+		<div class="input-group" style="z-index:999;background:none;">
+		<span class="input-group-addon">推荐人</span>
+		<input type="text" name="inviter" class="form-control" placeholder="推荐人代理ID">
+		<span class="input-group-addon"></span>
+		</div>
+		<br/>
+		<div class="input-group" style="z-index:999;background:none;margin-left:38%;">
+			<button class="btn btn-primary" type="submit" >提交申请</button>
+		</div>
+		<div>
+    </div>
+</block>

@@ -1,0 +1,64 @@
+<extend name="Base/header"/>
+
+<block name="body">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title></title>
+<link href="__CSS__/main.css" rel="stylesheet" />
+</head>
+<body>
+<section class="main fixed" data-page="home">
+  <header class="header"> 
+	<div class="header_inner header_inner_02"><h1>首页</h1> <a href="javascript:;history.go(-1)" class="sq-header-index"></a> </div>
+  </header>
+  <article>
+    <div class="me-combination-list">
+      <ul>
+      	<li class="me-combination-item1">
+          		 <img src="{$user_info.Headimgurl}"/>
+        </li>
+        <li class="me-combination-item2">
+           <div class="row-1">
+          	<h3 style="margin-top: 0.1rem;">当前佣金：{$user_info.Cash}元</h3>
+			<h3>当前娱币：{$user_info.yb_coin}个</h3>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="exchange_jl">
+    	<h1>娱币单价：0.5元/个</h1>
+		<h2>当前可兑换佣金：{$user_info.Cash}元</h2>
+		<h2>兑换娱币：<input type="text" name="cashtoyb" id="cashtoyb" placeholder=""></h2>
+		<h3>（1佣金=2娱币）</h3>
+		<div class="buttom" onclick="ScoreTrain();"><img src="__IMG__/exchange.png"></div>
+    </div>
+  </article>
+  <footer>
+  </footer>
+</section>
+</body>
+<script>
+	function ScoreTrain(){
+		var cash=$("#cashtoyb").val();
+		
+		if(cash<=0){
+			alert("请输入金额");
+		}
+		$.post('{:U("Ucenter/member/duihuanyubi")}',{cash:cash},function(data){
+			alert(data);
+			window.location.reload();
+		});
+		
+	}
+</script>
+</html>
+</block>

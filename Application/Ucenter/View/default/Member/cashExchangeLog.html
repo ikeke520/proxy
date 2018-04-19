@@ -1,0 +1,68 @@
+<extend name="Base/header"/>
+
+<block name="body">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title></title>
+<link href="__CSS__/main.css" rel="stylesheet" />
+</head>
+<body>
+<section class="main fixed" data-page="home">
+  <header class="header"> 
+	<div class="header_inner header_inner_02"><h1>娱币兑换记录</h1> <a href="javascript:;history.go(-1)" class="sq-header-index"></a> </div>
+  </header>
+  <article>
+    <div class="me-combination-list">
+      <ul>
+      	<li class="me-combination-item1">
+          		 <img src="{$user_info.Headimgurl}"/>
+        </li>
+        <li class="me-combination-item2">
+           <div class="row-1">
+		   <h4>当前娱币：{$user_info.yb_coin}</h4>
+          </div>
+        </li>
+      </ul>
+    </div>
+    
+	<div class="agent_serach">
+		<input type="date" name="begin_date" id="begin_date" class="data"/>&nbsp;到&nbsp;<input type="date" id="end_date" name="end_date" class="data"/>
+		<div class="submit" onclick="sub();"><img src="__IMG__/search.png" style="width: 100%;"></div>
+	</div>
+
+
+ <div class="my_agent">
+	<div class="agent_title">用户ID<span>剩余娱币</span><span>兑换娱币</span><span>兑换时间</span></div>
+<div id="list_content">
+<volist name="_list" id="vo">
+	 <div class="agent_content" style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;">
+		<div><p>{$user_info.UserID}</p></div><span>{$vo.last_coin}</span><span>{$vo.yb_coin}</span><span>{$vo.time|date="Y-m-d",###}</span>
+	</div>
+</volist>
+</div>
+	</div>
+  </article>
+  <footer>
+  </footer>
+</section>
+</body>
+<script>
+	function sub(){
+		var begin_date=$("#begin_date").val();
+		var end_date=$("#end_date").val();
+		$.post("{:U('Ucenter/member/cashExchangeLog')}",{begin_date:begin_date,end_date:end_date},function(data){
+			$("#list_content").html(data);
+		})
+	}
+</script>
+</html>
+</block>

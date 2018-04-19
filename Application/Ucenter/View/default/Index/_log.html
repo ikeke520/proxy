@@ -1,0 +1,57 @@
+<header>
+<!-- <h2>---拨房卡记录---</h2>-->
+</header>
+<label>
+<div id="fyact">
+
+</div>
+</label>
+<!-- 拨房卡数据 -->
+<div id="gold-log">
+<table class="table datatable">
+  <thead>
+    <tr>
+      <!-- 以下两列左侧固定 -->
+      <th>玩家ID</th>
+      <th>时间</th>
+      <th>房卡数</th>
+      <th>游戏</th>
+    </tr>
+  </thead>
+  <tbody id="gold-log-data">
+  </tbody>
+</table>
+</div>
+
+<block name="javascript">
+<script>
+  function getGoldLog(p){
+	
+	$.post('{:U("Ucenter/index/getGoldLog")}',{page:p},function(data){
+		var json=eval(data);
+		$('#gold-log-data').html(json.info);
+	});
+	if(parseInt(p)<=1){
+		p=1;
+	}
+	var p_add=parseInt(p)+1;
+	var p_dec=parseInt(p)-1;
+	
+	var html='<button type="button" class="btn btn-primary" onclick="getGoldLog('+p_dec+');">上一页</button><button type="button" class="btn btn-primary" onclick="getGoldLog('+p_add+');">下一页</button>';
+	$('#fyact').html(html);
+  }	
+  
+  function getFc(){
+	$.post('{:U("Ucenter/index/getFc")}',{},function(data){
+		var json=eval(data);
+		$('#fc').html(json.info);
+	});
+  }
+  
+  $(document).ready(function(){ 
+　　getGoldLog(1);
+	getFc();
+  }); 
+  
+  </script>
+</block>

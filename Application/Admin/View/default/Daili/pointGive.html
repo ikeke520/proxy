@@ -1,0 +1,78 @@
+<style>
+ul li{
+	height:30px;
+	margin-top:4px;
+}
+.mcenter{
+	margin-left:35%;
+}
+.input-line{
+height: 32px;
+width:60px;
+padding: 5px 8px;
+font-size: 13px;
+line-height: 1.53846154;
+color: #222;
+vertical-align: middle;
+background-color: #fff;
+border: 1px solid #ccc;
+border-radius: 4px;
+-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+</style>
+
+<div style="height:250px;">
+	<div class="main-title"  style="text-align:center;">
+        <h2>佣金、橙子、娱币修改</h2>
+    </div>
+<div class="mcenter">
+<input type='hidden'  id="id" name="id" value="{$_playerInfo.account_id}"/>
+<input type='hidden'  id="uid" name="uid" value="{$_playerInfo.UserID}"/>
+    <ul style="list-style:none;">
+    	<li><span>用户：{$_playerInfo.NickName}</span></li>
+    	<li><span style="width:100%;line-height:10px;heigth:20px;">代理等级：</span>
+    		<span >{$_playerInfo.agent_name}</span>
+    	</li>
+    	<li>
+    		<span>娱币：<input class="input-line" id="yb_coin" name="yb_coin" value="0"/>（直接进游戏账户）</span>
+    	</li>
+    	<li>
+    		<span>橙子：<input class="text input-line" id="chengzi" name="chengzi" value="0"/></span>
+    	</li>
+    	<li>
+    		<span>佣金：<input class="text input-line" id="Cash" name="Cash" value="0"/></span>
+    	</li>
+    	<li><button type=”button“ class="btn btn-success" onclick="sub();" style="margin-left:10%;margin-top:4px;">提交</button></li>
+    </ul>
+    
+</div>
+</div>
+<script>
+	function sub(){
+		var id=$("#id").val();
+		var uid=$("#uid").val();
+		var yb_coin_add=$("#yb_coin").val();
+		var chengzi_add=$("#chengzi").val();
+		var Cash_add=$("#Cash").val();
+		$.post("{:U('pointGive')}",{id:id,uid:uid,yb_coin_add:yb_coin_add,chengzi_add:chengzi_add,Cash_add:Cash_add},function(data){
+				var json=eval(data);
+				if(json.status==1){
+					 new $.zui.Messager('操作成功。', {
+					        icon: 'bell', // 定义消息图标
+					        placement: 'center',
+					        type: 'success'
+					    }).show();
+				}else{
+					new $.zui.Messager('操作成功。', {
+				        icon: 'bell', // 定义消息图标
+				        placement: 'center',
+				        type: 'error'
+				    }).show();
+				}
+			})
+	}
+</script>

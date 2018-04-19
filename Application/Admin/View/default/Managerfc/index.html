@@ -1,0 +1,102 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>{$meta_title}</h2>
+    </div>
+    <div class="clearfix">
+        <script>
+            function post_select_form(){
+                var ids=$('.ids').serialize();
+                var title="{:L('_USER_GROUP_SELECT_')}";
+                $.post("{:U('user/changeGroup')}",ids,function(msg){
+                    (new $.zui.ModalTrigger({custom: msg,title:title})).show();
+                })
+            }
+        </script>
+
+        <!-- 高级搜索 -->
+        <div class="search-form  col-xs-2 text-right">
+            <div class="input-group">
+            <select type="text" name="gameid" class="form-control" placeholder="游戏种类">
+                    <option value='0'>---请选择---</option>  
+                    <option value='1'  <eq name="gameid" value="1">selected</eq>>娱记麻将</option>
+                    <option value='2'  <eq name="gameid" value="2">selected</eq>>三公游戏</option> 
+            </select>
+                <input type="text" name="search" class="search-input form-control" value="{$search}"
+                       placeholder="玩家ID">
+                                 <span class="input-group-btn">  <a class="btn btn-default" href="javascript:;" id="search" url="{:U('index')}"><i class="icon-search"></i></a></span>
+            </div>
+        </div>
+    </div>
+    <!-- 数据列表 -->
+    <div class="data-table with-padding">
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+               <!--  <th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th> -->
+                <th class="">玩家ID</th>
+                <th class="">微信openid</th>
+                <th class="">房卡数量</th>
+                <th class="">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <notempty name="_list">
+                <volist name="_list" id="vo">
+                    <tr>
+                        <!-- <td><input class="ids" type="checkbox" name="id[]" value="{$vo.uid}"/></td> -->
+                        <td>{$vo.account_id}</td>
+                        <td>{$vo.username}</td>
+                        <td>{$vo.gold}</td>
+                        <td>
+							<a href="{:U('addfc',array('id'=>$vo['account_id'],'gameid'=>$gameid))}" >拨房卡</a>
+						</td>
+                    </tr>
+                </volist>
+                <else/>
+                <td colspan="9" class="text-center">{:L('_ADMIN_USER_EMPTY_')}</td>
+            </notempty>
+            </tbody>
+        </table>
+    </div>
+    <div class="with-padding">
+        {$_page}
+    </div>
+</block>
+
+<block name="script">
+    <script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+
+    <script type="text/javascript">
+        //搜索功能
+        $("#search").click(function () {
+            var url = $(this).attr('url');
+            var query = $('.search-form').find('input').serialize();
+            var query2 = $('.search-form').find('select').serialize();
+            
+            query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+            query = query.replace(/^&/g, '');
+            
+            query2 = query2.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g, '');
+            query2 = query2.replace(/^&/g, '');
+            
+            if (url.indexOf('?') > 0) {
+                url += '&' + query+'&'+query2;
+            } else {
+                url += '?' + query+'&'+query2;
+            }
+            window.location.href = url;
+        });
+        //回车搜索
+        $(".search-input").keyup(function (e) {
+            if (e.keyCode === 13) {
+                $("#search").click();
+                return false;
+            }
+        });
+        //导航高亮
+        highlight_subnav("{:U('User/index')}");
+    </script>
+</block>

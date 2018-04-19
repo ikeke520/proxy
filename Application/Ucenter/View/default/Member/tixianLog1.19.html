@@ -1,0 +1,62 @@
+<extend name="Base/common"/>
+<block name="body">
+<style>
+.menu_ul{
+	list-style: none;
+}
+.menu_ul li{
+	width: 100%;
+    margin-left: -20px;
+    height: 6rem;
+    float: left;
+    display: table;
+    padding-bottom: 1rem;
+}
+.menu_ul li a span{
+	color:#ffffff;
+}
+.menu_ul li{
+	
+}
+
+.menu_ul li {
+	display: table-cell;
+	padding-left: 30px;
+	width:100%;
+}
+hr{
+	margin-top:-20px;
+	margin-bottom:-20px;
+}
+.li-right{
+	margin-top:1.2rem;
+	float:right;
+	font-size:2rem;
+}
+.li-left1{
+	font-size:2rem;
+	margin-bottom:-5px;
+}
+.clear-hr{
+	clear:both;
+	margin-left:-20px;
+	margin-top:-20px;
+	margin-bottom:-20px;
+}
+</style>
+
+<div>
+	<div>
+	<ul class="menu_ul">
+<notempty name="list">
+<volist  name="list"  id="vo">
+			<li>
+					<div class="card-li"><span style="float:left;"><p class="li-left1">{$vo.remark}</p><p>{$vo.addtime|time_format="Y-m-d H:i:s"}</p></span><span class="li-right" >￥{$vo.money}</span></div>
+					<div style="clear:both;margin-left:-20px;"><hr /></div>
+			</li>
+</volist>
+</namespace>
+	</ul>
+	</div>
+</div>
+</block>

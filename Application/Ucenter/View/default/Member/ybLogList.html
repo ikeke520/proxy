@@ -1,0 +1,39 @@
+<div class="agent_serach">
+		<input type="date" id="begin_date" name="begin_date" class="data" value="{$start_time}"/>&nbsp;到&nbsp;<input type="date" id="end_date" name="end_date" class="data " value="{$end_time}"/>
+		<div class="submit">
+		<img src="__IMG__/search.png" style="width: 100%;" onclick="search();">
+		</div>
+</div>
+
+   <div class="my_agent"> <div class="agent_title">代理昵称，ID<span style="width: 14%;">佣金</span>
+   <span style="width: 14%;">金额</span><span style="width: 14%;">类型</span></div>
+<volist name="orderList" id="vo">	 
+	 <div class="agent_content">
+		<div><p>{$vo.username}</p><h6>ID：{$vo.user_id}</h6></div><span style="width: 12%;">{$vo.Cash|default=0}</span>
+		<span style="width: 12%;">{$vo.cost_money|default=0}</span><span style="width: 14%;">{$vo.agent_name|default=代理}</span>
+	</div>
+</volist>
+	</div>
+  </article>
+  <footer>
+    <div class="footer-balance">
+      <ul class="ui layout">
+        <li class="row-1"><span><a href="https://tzp.91yuji.com/mall/mall/user/agentCenter">充 值</span></a></li>
+      </ul>
+    </div>
+  </footer>
+  <script>
+//仅选择日期
+  $(".data").datetimepicker(
+  {
+      language:  "zh-CN",
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      minView: 2,
+      forceParse: 0,
+      format: "yyyy-mm-dd"
+  });
+  </script>

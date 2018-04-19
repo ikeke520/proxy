@@ -1,0 +1,23 @@
+<div class="me-combination-list">
+      <ul>
+      	<li class="me-combination-item1">
+          		 <img src="{$user_info.Headimgurl}"/>
+        </li>
+        <li class="me-combination-item2">
+           <div class="row-1">
+		   <h4>{$user_info.NickName|htmlspecialchars}
+		   <eq name="user_info.agent" value="3">
+		   		（{:L('_AGENT3_')}）
+		   </eq>
+		    <eq name="user_info.agent" value="2">
+		   		（{:L('_AGENT2_')}）
+		   </eq>
+		    <eq name="user_info.agent" value="1">
+		   		（{:L('_AGENT1_')}）
+		   </eq>
+		   </h4>
+          	<h3><img src="__IMG__/iphone.png" style="width: 0.115rem;margin-right: 0.05rem;"/>{$user_info.Mobile}</h3>
+          </div>
+        </li>
+      </ul>
+    </div>

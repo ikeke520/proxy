@@ -1,0 +1,55 @@
+<extend name="Base/header"/>
+<block name="body">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<!--<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">-->
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title></title>
+<link href="__CSS__/main.css" rel="stylesheet" />
+</head>
+<body>
+<section class="main fixed" data-page="home" id="active">
+<header class="header">
+    <div class="header_inner header_inner_02"><h1>我的代理</h1> <!--<a href="#" class="sq-header-serach"></a>-->
+    <a class="sq-header-index" href="javascript:;history.go(-1)"></a> </div>
+  </header>
+  <article>
+  <div class="my_agent">
+     <h1>当前总佣金：{$user_info.Cash|default=0}元</h1>
+	<!-- <div class="agent_serach">
+ 	<input type="date" name="begin_date" class="data"/>&nbsp;到&nbsp;<input type="date" name="end_date" class="data"/>
+		<div class="submit"><img src="__IMG__/search.png" style="width: 100%;"></div>
+	</div> -->	
+	 <div class="agent_title">代理昵称，ID<span>状态</span><span>佣金</span><span>类型</span></div>
+<volist name="_list" id="vo">
+	
+	 <div style="white-space:nowrap; text-overflow:ellipsis; overflow:hidden;" class="agent_content" data-toggle="collapse" data-target="#collapseExample{$vo.UserID}">
+		<img src="{$vo.Headimgurl}"/>
+		<div style="width:10%;"><p>{$vo.NickName}</p><h6>{$vo.UserID}</h6></div><span>{$vo.type|default="结束"}</span><span>{$vo.Cash}</span><span>{$vo.agent_name}</span>
+	</div>
+	
+<div class="collapse" id="collapseExample{$vo.UserID}">
+  <div class="with-padding" style="background-color:#f4f4f4">
+ 	<ul><li><span>电话：{$vo.Mobile}</span></li>
+	<li><span>代理时间：{$vo.Addtime}</span></li>
+	</ul>
+  </div>
+</div>
+
+</volist>
+  </div>
+  </article>
+  <footer>
+  </footer>
+</section>
+</body>
+</html>
+</block>

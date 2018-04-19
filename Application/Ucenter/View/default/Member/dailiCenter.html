@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"/>
+<meta name="format-detection" content="telephone=no"/>
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta content="telephone=no" name="format-detection" />
+<meta name="browsermode" content="application">
+<meta name="x5-page-mode" content="app">
+<meta name="msapplication-tap-highlight" content="no">
+<title></title>
+<link href="__CSS__/main.css" rel="stylesheet" />
+<style>
+a{
+text-decoration:none;
+color:#fff;
+}
+</style>
+</head>
+<body>
+<section class="main fixed">
+  <header class="header">
+    <div class="header_inner header_inner_02">
+      <h1>个人中心</h1>
+      <a class="sq-header-index" href="javascript:;history.go(-1)"></a>
+    </div>
+  </header>
+  <article>
+    <div class="up-user-list">
+      <ul>
+        <li class="ui layout up-user-item">
+          <div class="row-1">
+         	 <p>头像<img src="{$user_info.Headimgurl}"/></p>
+          </div>
+        </li>
+        <li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>昵称<input type="text" id="nickname" value="{$user_info.NickName}" disabled="true"/> </p>
+          </div>
+        </li>
+		<li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>ID<input type="text" id="nickname" value="{$user_info.UserID}" disabled="true"/> </p>
+          </div>
+        </li>
+        <li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>性别<input type="text" value="{$user_info.sex}" disabled="true"/> </p>
+          </div>
+        </li>  
+        <li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>手机号<input type="text" value="{$user_info.Mobile}" disabled="true"/></p>
+          </div>
+        </li>
+		 <li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>微信号<input type="text" value="{$user_info.Unionid}" disabled="true"/></p>
+          </div>
+        </li>
+        <li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>代理等级<input type="text" value="{$user_info.agent_name}" disabled="true"/></p>
+          </div>
+        </li>
+		<li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>已绑定手机号<input type="text" value="{$user_info.Mobile}" disabled="true"/></p>
+          </div>
+        </li>
+		<li class="ui layout up-user-item">
+          <div class="row-1">
+          <p>加入时间<input type="text" value="{$user_info.Addtime}" disabled="true"/></p>
+          </div>
+        </li>
+		<li class="ui layout up-user-item">
+          <div class="erweima">
+		  <img src="__IMG__/ewm.png">
+          </div>
+        </li>
+      </ul>
+    </div>
+  </article>
+  <footer>
+    <div class="footer-balance">
+      <ul class="ui layout">
+        <li class="row-1"><span><a href="{:U('Ucenter/member/logout')}" >退出登录</a></span></li>
+      </ul>
+    </div>
+  </footer>
+</section>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<extend name="Base/common"/>
+<block name="body">
+
+<style>
+.yj_head{
+	text-align:center;
+	
+}
+.font_big{
+	font-size:4rem;
+}
+.font_2{
+	padding-top:1rem;
+	font-size:2rem;
+}
+.btn-w{
+	width:30rem;
+	height:5rem;
+	font-size:2rem;
+	background-color:#D7D1CC;
+	color:#363131;
+	border-color:#F4F6F8;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+}
+
+.btn-a{
+	width:30rem;
+	height:5rem;
+	font-size:2rem;
+	background-color:#FC6C00;
+	color:#F4F6F8;
+	border-color:#F4F6F8;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+}
+.img_box{
+	text-align:center;
+	padding-top:10rem;
+}
+.img_b{
+	width:38.2%;
+	height:38.2%;
+}
+</style>
+	<div class="img_box">
+		<img class="img_b"  src="__IMG__/b.png"/>
+	</div>
+	<div class="yj_head">
+		<p class="font_2">我的佣金</p>
+		<p class="font_big">￥{$user.Cash}</p>
+	</div>
+	<div class="yj_head">
+		<p><a class="btn btn-a" href="{:U('Ucenter/member/tixian')}">提现</a></p>
+		<p><a class="btn btn-w" href="{:U('Ucenter/member/tixianLog')}">提现记录</a></p>
+	</div>
+</block>

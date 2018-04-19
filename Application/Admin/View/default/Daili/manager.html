@@ -1,0 +1,111 @@
+<extend name="Public/base"/>
+
+<block name="body">
+    <!-- 标题栏 -->
+    <div class="main-title">
+        <h2>代理用户表</h2>
+    </div>
+    <div class="clearfix">
+        <div class="col-xs-10">
+		<a class="btn btn-success"  href="{:U('dailiinfo')}">新增</a>
+        </div>
+        <!-- 高级搜索 -->
+        <div class="search-form  col-xs-2 text-right">
+        	<input type="hidden" name="id" id="id" value="{$id}"/>
+            <div class="input-group">
+            <input type="text" id="UserID" name="UserID" value="" class="text form-control" placeholder="请输入ID"/>
+        <span class="input-group-btn"><a class="btn btn-default" href="javascript:;" id="search" url="{:U('manager')}"><i class="icon-search"></i></a></span>
+            </div>
+        </div>
+    </div>
+    <!-- 数据列表 -->
+    <div class="data-table with-padding">
+        <table class="table table-bordered table-striped ">
+            <thead>
+            <tr>
+                <th class="col-xs-1">id</th>
+                <th class="col-xs-1">头像</th>
+                <th class="col-xs-1">昵称</th>
+                <th class="col-xs-1">手机号</th>
+                <th class="col-xs-1">注册时间</th>
+                <th class="col-xs-1">上级</th>
+                <th class="col-xs-1">代理等级</th>
+                <th class="col-xs-1">俱乐部权限</th>
+                <th class="col-xs-1">佣金</th>
+                <th class="col-xs-1">娱币（房卡）</th>
+                <th class="col-xs-2">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <notempty name="_list">
+                <volist name="_list" id="vo">
+                    <tr>
+                        <td><a href="{:U('dailiInfo')}&id={$vo.UserID}">{$vo.UserID}</a></td>
+                        <td><img src="{$vo.Headimgurl}"  style="width:30px;height:30px"/></td>
+                        <td><a href="{:U('dailiInfo')}&id={$vo.UserID}">{$vo.NickName}</a></td>
+                        <td>{$vo.CashScore}</td>
+                        <td>{$vo.Mobile}</td>
+                        <td>{$vo.Addtime}</td>
+                        <td>{$vo.upidname}({$vo.upId})</td>
+                        <td>{$vo.level_name}</td>
+                        <td>{$vo.jlb}</td>
+                        <td>
+                				{$vo.Cash|default=0}
+                        </td>
+                        <td>
+                				{$vo.yb_coin|default=0}
+                        </td> 
+                        <td>
+             				<eq name="vo.jlb" value="有">
+             				<a class="btn" href="{:U('jlbedit')}&username={$vo.Unionid}&status=0">关闭</a>
+             				<else/>
+             				<a class="btn" href="{:U('jlbedit')}&username={$vo.Unionid}&status=1">开启</a>
+             				</eq>
+                        	<a class="btn" href="{:U('manager')}&upid={$vo.UserID}">下级</a>
+                        	<a class="btn" href="{:U('boka')}&UserID={$vo.UserID}">拨卡</a>
+                        </td>                      
+                    </tr>
+                </volist>
+                <else/>
+                <td colspan="9" class="text-center">{:L('_ADMIN_USER_EMPTY_')}</td>
+            </notempty>
+            </tbody>
+        </table>
+    </div>
+    <div class="with-padding">
+        {$_page}
+    </div>
+    
+</block>
+
+<block name="script">
+    <script src="__STATIC__/thinkbox/jquery.thinkbox.js"></script>
+    
+	<link href="__ZUI__/lib/datetimepicker/datetimepicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="__ZUI__/lib/datetimepicker/datetimepicker.min.js"></script>
+    
+    <script type="text/javascript">
+        //搜索功能
+		
+        $("#search").click(function () {
+            var url = $(this).attr('url');
+            var UserID=$("#UserID").val();
+
+            if (url.indexOf('?') > 0) {
+                url += '&' +"UserID="+UserID;
+            } else {
+                url += '?' +"UserID="+UserID;
+            }
+            window.location.href = url;
+        });
+        //回车搜索
+        $(".search-input").keyup(function (e) {
+            if (e.keyCode === 13) {
+                $("#search").click();
+                return false;
+            }
+        });
+        //导航高亮
+        highlight_subnav("{:U('Fenxiao/RegisterList')}");
+    </script>
+</block>

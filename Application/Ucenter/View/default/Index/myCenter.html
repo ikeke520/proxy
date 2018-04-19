@@ -1,0 +1,32 @@
+<include file="_newHeader"/>
+<body>
+<section class="main fixed" data-page="home">
+  <header class="header"> 
+  </header>
+  <article>
+    <include file="_user"/>
+    <div class="me-user-tiltle">
+    	<ul><li ><p>{$user_info.UserID}</p>邀请码</li>
+    	<li style="border-left: 1px solid #ffffff;border-right: 1px solid #ffffff;"><p>{$user_info.yb_coin|default=0}个</p>娱币</li> 
+    	<li><p>{$user_info.chengzi|default=0}个</p>积分</li>
+    	<li><p>{$user_info.Cash|default=0}元</p>佣金</li> </ul>
+    	</ul>
+    </div>
+    <div class="me-user-fenlan">
+    	<ul>
+    	<li><a href="{:U('Ucenter/index/information')}"><img src="__IMG__/daili.png" />玩家拨卡</a></li>
+    	<li><a href="{:U('Ucenter/index/dailiboka')}"><img src="__IMG__/daili.png" />代理拨卡</a></li>
+    	<li><a href="{:U('Ucenter/index/BokaLog')}"><img src="__IMG__/dz_icon.png" />拨卡记录</a></li> 
+    	<li><a href="{:U('Ucenter/member/DailiNextLevel')}"><img src="__IMG__/gwc_icon.png" />我的代理</a></li> 
+		<li><a href="{:U('Ucenter/member/Income')}"><img src="__IMG__/kq_icon.png" />系统管理</a></li> 
+    	<li><a href="{:U('Ucenter/member/dailiCenter')}"><img src="__IMG__/dd_icon.png" />个人中心</a></li>
+    	<li><a href="{:U('Ucenter/member/scoreExchangeLog')}"><img src="__IMG__/dd_icon.png" />积分兑换记录</a></li> 
+    	<li><a href="{:U('Ucenter/member/cashExchangeLog')}"><img src="__IMG__/dd_icon.png" />娱币兑换记录</a></li>  
+    	</ul>
+    </div>
+  </article>
+  <footer>
+  </footer>
+</section>
+</body>
+</html>

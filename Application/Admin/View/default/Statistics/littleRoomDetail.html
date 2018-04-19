@@ -1,0 +1,52 @@
+<style>
+.mcenter div{
+	width:24%;
+	height:240px;
+	border:1px solid #7a76b9;
+	margin:2px;
+	float:left;
+	font-size:12px;
+}
+.mcenter p{
+	text-align:center;
+}
+.mcenter img{
+	width:20px;
+	height:20px;
+}
+.mcenter table tr{
+	height:1px;
+}
+</style>
+<div style="height:580px;">
+	<div class="main-title"  style="text-align:center;">
+        <h2>小局详情</h2>
+    </div>
+<div class="mcenter">
+<volist name="roomData" id="vo">
+	<div>
+		<table class="table">
+			<thead>
+				<tr>
+				<th>ID</th><th>昵称</th><th>头像</th><th>结果</th><th>结算</th>
+				</tr>
+			</thead>	
+				<tbody>
+		<volist name="vo.info_list" id="ret">
+		<tr>
+					<td>{$ret.playerid}</td><td>{$ret.attribute.player_name}</td>
+					<td><img src="{$ret.attribute.head_url}" /></td>
+					<td><eq name="ret.is_win" value="1">
+				赢
+			<else/>
+				输
+			</eq></td><td>{$ret.score}</td>
+			</tr>
+		</volist>
+		
+				</tbody>
+			</table>
+	</div>
+</volist>
+</div>
+</div>

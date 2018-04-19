@@ -1,0 +1,54 @@
+<extend name="Public/base" />
+
+<block name="body">
+	<div class="main-title cf">
+		<h2>微信群发</h2>
+	</div>
+	<!-- 表单 -->
+	<article><font style="color:red">请注意:</font>点击群发的时候，因为发送人员过多，反应会很慢，此时请勿关闭页面或者跳转页面，耐心等候提示信息，避免发送部分人员后中断！！</article>
+    
+    <div class="with-padding">
+        <form id="form" action="{:U('wxTxtSend')}" method="post" class="form-horizontal">
+           
+            <div class="form-item cf">
+                <label class="item-label">提示内容<span class="check-tips">（文字）</span></label>
+                <div class="controls">
+                    <label class="textarea input-large" ><textarea id="content" name="content" class=" form-control form-text-area-size" rows="12" placeholder="可以输入多行文本"></textarea></label>
+                </div>
+                
+            <div class="form-item">
+                <input type="hidden" name="id" value="{$data.id}"/>
+                <button type="button" onclick="preview()" class="btn" target-form="form-horizontal">预览</button>
+                <button type="submit" class="btn submit-btn ajax-post confirm" target-form="form-horizontal" >群发</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+               
+            </div>
+        </form>
+    </div>
+
+</block>
+
+<block name="script">
+<script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+	Think.setValue('type',{$type|default=1});
+    //导航高亮
+    highlight_subnav('{:U('User/action')}');
+</script>
+
+<script>
+ 	function preview(){
+ 		var content=$("#content").val();
+ 		$.post("{:U('wxTxtPreview')}",{content:content},function(data){
+ 			if(data){
+ 				alert(data);
+ 			}else{
+ 				alert("系统出错，请联系欧阳长空大侠");
+ 			}
+ 		});
+ 		
+ 	}
+</script>
+
+
+</block>

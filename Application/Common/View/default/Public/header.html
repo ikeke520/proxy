@@ -1,0 +1,48 @@
+<include file="Public/right_chat_panel"/>
+<!--[if lt IE 8]>
+<div class="alert alert-danger" style="margin-bottom: 0">{:L('_TIP_BROWSER_DEPRECATED_1_')} <strong>{:L('_TIP_BROWSER_DEPRECATED_2_')}</strong>
+    {:L('_TIP_BROWSER_DEPRECATED_3_')} <a target="_blank"
+                                          href="http://browsehappy.com/">{:L('_TIP_BROWSER_DEPRECATED_4_')}</a>
+    {:L('_TIP_BROWSER_DEPRECATED_5_')}
+</div>
+<![endif]-->
+
+<php>
+    $unreadMessage=D('Common/Message')->getHaventReadMeassageAndToasted(is_login());
+</php>
+<style>
+.fanhui_btn{
+	float:left;
+	width:3rem;
+	height:3rem;
+	margin-top:1rem;
+}
+.logo_header{
+	width:14rem;height:4rem;
+	margin-top:1rem;
+}
+</style>
+<div id="nav_bar" class="nav_bar">
+
+    <div class="container">
+	<div class="fanhui_btn"  onclick="window.history.go(-1);">
+		<img src="__PUBLIC__/images/return_btn.png" />
+	</div>
+        <nav class="" id="">
+            <php>$logo = get_cover(modC('LOGO',0,'Config'),'path');
+                $logo = $logo?$logo:'__ROOT__/Public/images/logo.png';
+            </php>
+            	<img class="logo_header" src="{$logo}" />
+			<php>
+				if($user_info) {
+			</php>
+				<div class="logoutBtn" style="float:right;margin-right:2rem;margin-top:1rem;"><a class="btn" href="{:U('Ucenter/Member/logout')}">注销</a></div>
+			<php>}</php>
+            <div class="" id="nav_bar_main">
+            <!--导航栏菜单项-->
+        </nav>
+    </div>
+</div>
+<include file="Public/_system"/>
+
+

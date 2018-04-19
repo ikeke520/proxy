@@ -1,0 +1,42 @@
+
+<style>
+ul li{
+	height:20px;
+	margin-top:4px;
+}
+.mcenter{
+	margin-left:35%;
+}
+</style>
+
+<div style="height:200px;">
+	<div class="main-title"  style="text-align:center;">
+        <h2>确定授予该玩家俱乐部权限授权？</h2>
+    </div>
+<div class="mcenter">
+<input type='hidden'  id="id" name="id" value="{$_playerInfo.account_id}"/>
+    <ul style="list-style:none;">
+    	<li><span>用户：{$_playerInfo.NickName}</span></li>
+    	<li><span style="width:100%;line-height:10px;heigth:20px;">代理等级：</span>
+    		<span>{$_playerInfo.agent_name}</span>
+    	</li>
+    	<li><button type=”button“ class="btn btn-success" onclick="sub();" style="margin-left:10%;margin-top:4px;">授权</button></li>
+    </ul>
+    
+</div>
+</div>
+<script>
+	function sub(){
+		var id=$("#id").val();
+		$.post("{:U('clubEdit')}",{id:id},function(data){
+				var json=eval(data);
+				if(json.status==1){
+					 new $.zui.Messager('操作成功。', {
+					        icon: 'bell', // 定义消息图标
+					        placement: 'center',
+					        type: 'success'
+					    }).show();
+				}
+			})
+	}
+</script>

@@ -1,0 +1,59 @@
+<extend name="Base/common"/>
+<block name="body">
+<style>
+.menu_ul{
+	list-style: none;
+}
+.menu_ul li{
+	width: 115%;
+    margin-left: -35px;
+    height: 45px;
+    float: left;
+    display: table;
+    margin-bottom: 3px;
+}
+.menu_ul li a span{
+	color:#ffffff;
+}
+.menu_ul li:first-child{
+	background: #EAC27A;
+}
+.menu_ul li:nth-child(2){
+	background: #EBA67F;
+}
+.menu_ul li:nth-child(3){
+	background: #EA705B;
+}
+.menu_ul li:nth-child(4){
+	background: #84AFE4;
+}
+.menu_ul li:nth-child(5){
+	background: #9DACBF;
+}
+.menu_ul li a{
+	display: table-cell;
+	vertical-align: middle;
+	    padding-left: 30px;
+}
+.hr{
+	margin:0px;
+}
+</style>
+<hr class="hr"/>
+<div>
+	<div>
+	<ul class="menu_ul">
+			<li>
+				<a href="{:U('Ucenter/member/yongjin')}">
+					<span>佣金</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<span>消息中心</span>
+				</a>
+			</li>
+	</ul>
+	</div>
+</div>
+</block>

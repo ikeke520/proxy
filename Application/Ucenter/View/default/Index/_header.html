@@ -1,0 +1,64 @@
+<style>
+
+</style>
+<div class="uc_top_bg">
+    <if condition="$user_info['cover_id']">
+        <img class="uc_top_img_bg" src="{$user_info['cover_path']}" style="width: 100%;height: 100%">
+        <else/>
+        <img class="uc_top_img_bg" src="__IMG__/user_top_default_bg.jpg" style="width: 100%;height: 100%">
+    </if>
+    <if condition="is_login() && $user_info['uid'] eq is_login()">
+        <div class="change_cover"><a data-type="ajax" data-url="{:U('Ucenter/Public/changeCover')}" data-toggle="modal" data-title="{:L('_UPLOAD_PERSONAL_COVER_')}" style="color: white;"><img class="img-responsive" src="__CORE_IMAGE__/fractional.png"></a>
+        </div>
+    </if>
+</div>
+<div class="row uc_info">
+    <div class="col-xs-5" style="
+    margin-top: 6rem;
+">
+        <dl>
+            <dt>
+                    <img src="{$user_info.Headimgurl}" class="avatar-img img-responsive top_img"/>     
+            </dt>
+            <dd>
+                
+            </dd>
+        </dl>
+    </div>
+    <div class="col-xs-6">
+        <div class="uc_main_info">
+            <div class="uc_m_t_12 uc_m_b_12 uc_uname">
+                <span>
+                    <a ucard="{$user_info.uid}" href="{$user_info.space_url}" title="">{$user_info.NickName|htmlspecialchars}
+            <eq name="user_info.agent" value="3">
+		   		（{:L('_AGENT3_')}）
+		   </eq>
+		    <eq name="user_info.agent" value="2">
+		   		（{:L('_AGENT2_')}）
+		   </eq>
+		    <eq name="user_info.agent" value="1">
+		   		（{:L('_AGENT1_')}）
+		   </eq>
+                    </a>
+                </span>
+                    <span>
+            </span>
+            </div>
+            <div class="uc_m_b_12"><span>ID{:L('_COLON_')}{$user_info.UserID}</span></div>
+            <div class="uc_m_b_12"><span>用户手机{:L('_COLON_')}{$user_info.Mobile}</span></div>
+			<div class="uc_m_b_12"><span>娱币数量{:L('_COLON_')}{$user_info.yb_coin|default=0}<!-- <p id="fc"></p> --></span></div>
+            <div class="uc_m_b_12"><span>橙      子{:L('_COLON_')}{$user_info.chengzi|default=0}</span></div>
+            <notempty name="user_info['tags']">
+                <div class="uc_m_b_12">
+                    <span>
+                        {:L('_PERSONAL_TAB_')}{:L('_COLON_')}
+                        <volist name="user_info['tags']" id="tag">
+                            &nbsp;<a href="{:U('people/index/index',array('tag'=>$tag['id']))}" class="label label-badge label-default">{$tag.title}</a>&nbsp;
+                        </volist>
+                    </span>
+                </div>
+            </notempty>
+        </div>
+    </div>
+</div>
+</block>

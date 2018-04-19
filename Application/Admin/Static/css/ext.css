@@ -1,0 +1,16 @@
+.with-padding-lg {
+  padding: 24px 10px ;
+}
+.centerDiv {
+	position:absolute;margin:0 auto; width:400px; height:200px; border:1px solid #c0c0c0;top:30%;left:30%;
+	background-color:#b0d0ba;
+}
+.center_title{
+	margin-left:20%;
+	margin-top:15%;
+	width:60%;
+	z-index:100;
+}
+.center_top{
+	text-align:center;
+}
